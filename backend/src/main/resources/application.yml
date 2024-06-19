@@ -1,0 +1,28 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /dscommerceq
+
+spring:
+  application:
+    name: dscommerceq
+    version: 1.0.0
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: ${DATABASE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/dscommerceq
+    username: ${DATABASE_USERNAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  flyway:
+    baselineOnMigrate: true
+    check-location: true
+    schemas: public
+    enabled: true
+
+
