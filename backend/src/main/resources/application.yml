@@ -10,7 +10,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     password: ${DATABASE_PASSWORD}
-    url: jdbc:postgresql://localhost:5432/dscommerceq
+    url: jdbc:postgresql://${DATABASE_IP}:${DATABASE_PORT}/dscommerceq
     username: ${DATABASE_USERNAME}
   jpa:
     hibernate:
