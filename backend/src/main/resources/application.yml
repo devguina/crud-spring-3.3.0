@@ -13,8 +13,6 @@ spring:
     url: jdbc:postgresql://${DATABASE_IP}:${DATABASE_PORT}/dscommerceq
     username: ${DATABASE_USERNAME}
   jpa:
-    hibernate:
-      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
