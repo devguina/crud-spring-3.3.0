@@ -1,5 +1,6 @@
 package com.devguina.dscommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,8 +21,10 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE",nullable = false)
     private Instant moment;
+
+    @Column(nullable = false)
     private OrderStatus status;
 
     @ManyToOne
@@ -31,7 +34,8 @@ public class Order implements Serializable {
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
-    @OneToMany(mappedBy = "id.order")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "id.order", fetch = FetchType.LAZY)
     private Set<OrderItem> items = new HashSet<>();
 
     public Order() {

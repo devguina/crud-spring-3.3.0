@@ -1,5 +1,6 @@
 package com.devguina.dscommerce.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,13 +22,17 @@ public class User implements Serializable {
     private UUID id;
     private String name;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String phone;
+    @Column(nullable = false)
     private LocalDate birthDate;
+    @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "client")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 
     public User() {
